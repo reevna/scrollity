@@ -282,18 +282,18 @@ function deleteBlock(selectableBlock: Selection): Presentation {
     }
 }
 
-// copy paste - нужно ли????
-function copy(selectableBlock: Selection): Presentation {
-    return {
-        push stack ? что идет в стэк? Переменная или ID БЛОКА?
-    }
-}
+// copy paste - нужно ли???? Ответ не нужно реализовывать, но нужно это понимать, как работает и в каком месте проекта может быть использована.
+// function copy(selectableBlock: Selection): Presentation {
+//     return {
+//         push stack ? что идет в стэк? Переменная или ID БЛОКА?
+//     }
+// }
 
-function paste(copiedObjects: CopiedObjects): Presentation {
-    return {
-        add block из стека и сгенерить ему новый id
-    }
-}
+// function paste(copiedObjects: CopiedObjects): Presentation {
+//     return {
+//         add block из стека и сгенерить ему новый id
+//     }
+// }
 
 function moveBlock(presentation: Presentation, selection: {  }, newX: number, newY: number): Presentation {
 
