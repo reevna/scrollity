@@ -58,12 +58,17 @@ type Block = {
 type Slide = {
     id: string,
     data: Array<Block>,
-    background: SlideBackground,
+    background: ImageBackground | ColorBackground,
 }
 
-type SlideBackground = {
-    type: 'image'|'color',
-    data: string
+type ImageBackground = {
+    type: 'image',
+    base64: string,
+}
+
+type ColorBackground = {
+    type: 'color',
+    color: string,
 }
 
 type Presentation = {
@@ -83,7 +88,8 @@ type Selection = {
 export {
     Presentation,
     Slide,
-    SlideBackground,
+    ImageBackground,
+    ColorBackground,
     TextBlock,
     ImageBlock,
     GraphicObject,

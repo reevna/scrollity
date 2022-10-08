@@ -189,9 +189,15 @@ function pasteTextChar(текстовый блок, положение курс�
 
 // фунцкии для работы с блоком текста в текстовом блоке   (type TextBlock)
 
-function ChangeFontSize(blockId, fontSize: number): Presentation {
+function ChangeFontSize(presentation: Presentation, slide:Slide[все слайды], Slide.Id, block:Block[все блоки], block.Id, fontSize: number): Presentation {
+    NewFontSize - установка выбранного юзером . выбор в выпа
+    const newTextBlock = {
+        fontSize: NewFontSize,
+    } 
     return {
-        TextBlock с применением выбранного размера
+        ...presentation,
+        ...blocks,   //остальные блоки 
+        newTextBlock
     }
 }
 
@@ -348,10 +354,18 @@ function addSlide(presentation: Presentation, index: number): Presentation { // 
         }
     };
 
-    const oldSlides = [presentation.slides];
+    // let newSlides: Array<Slide> = [...presentation.slides]
+
+    // if (index == presentation.slides.length) {
+    //     newSlides.push(newSlide)
+    // } else {
+    //     newSlides.splice(index, 0, newSlide)
+    // }
+
+    const oldSlides = [...presentation.slides];
     const newSlides: Array<Slide> = presentation.slides.length === index // в чем разница между разными способами объявить массив?
         ? [...presentation.slides, newSlide]
-        : [...oldSlides.splice(index, 0, newSlide)]; // будет ли здесь персистентность данных
+        : oldSlides.splice(index, 0, newSlide); 
 
     return {
         ...presentation,
@@ -360,9 +374,9 @@ function addSlide(presentation: Presentation, index: number): Presentation { // 
 }
 
 
-function deleteSlide(presentation: Presentation, indexesToDelete: Array<number>): Presentation { // лучше по индексам или по id?
-    const newSlides = [...presentation.slides.filter((slide: Slide, _index: number) =>   // для чего нижнее подчеркивание?
-        indexesToDelete.indexOf(_index) >= 0)]
+function deleteSlides(presentation: Presentation, indexesToDelete: Array<number>): Presentation { // лучше по индексам или по id?
+    const newSlides = presentation.slides.filter((slide: Slide, _index: number) =>   // для чего нижнее подчеркивание?
+        indexesToDelete.indexOf(_index) >= 0)
 
     return {
         ...doc,
