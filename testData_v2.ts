@@ -188,11 +188,50 @@ function pasteTextChar(текстовый блок, положение курс�
 
 
 // фунцкии для работы с блоком текста в текстовом блоке   (type TextBlock)
+//for font style
 
-function ChangeFontSize(presentation: Presentation, slide:Slide[все слайды], Slide.Id, block:Block[все блоки], block.Id, fontSize: number): Presentation {
-    NewFontSize - установка выбранного юзером . выбор в выпа
+function changeFontStyle(presentation: Presentation, blockId:string, fontStyle:string): Presentation {
+    let chosenfontStyle = document.getElementById("chosenfontStyle");
+    // прокинуть привязку к кнопкам , поменять на onMouseClick 
+    let currentStyle = document.getElementById(TextBlock);
+    let newFontStyle;
+    //for bold
+    if (chosenfontStyle == 'bold') 
+    {
+        if (currentStyle == 'bold')
+            {
+                newFontStyle = 'normal';
+            }
+        else
+           newFontStyle = 'bold';
+    }
+    //for italic
+    else if (chosenfontStyle == 'italic') 
+    {
+        if (currentStyle == 'italic')
+        {
+            newFontStyle = 'normal';
+        }
+        else
+        {
+            newFontStyle = 'italic';
+        }
+    }
+    //for underline
+    else if (chosenfontStyle =='underline')
+    {
+        if (newFontStyle == 'underline')
+        {
+            newFontStyle = 'none';
+        }
+        else
+        {
+            newFontStyle = 'underline';
+        }
+    }
+
     const newTextBlock = {
-        fontSize: NewFontSize,
+        fontStyle: newFontStyle,
     } 
     return {
         ...presentation,
@@ -201,16 +240,84 @@ function ChangeFontSize(presentation: Presentation, slide:Slide[все слай�
     }
 }
 
-function ChangeFontFamily(blockId: string, fontFamily: string): Presentation {
+
+//for font size
+function ChangeFontSize(presentation: Presentation, blockId:string, fontSize:number): Presentation {
+    let currentFontSize = document.getElementById(TextBlock);
+ // прокинуть привязку к выпадающему списку или поменять на onMouseClick 
+    let chosenfontSize = document.getElementById("chosenfontSize");
+    let newFontSize;
+    newFontSize = chosenfontSize + "px";
+    
+    const newTextBlock = {
+        fontSize: newFontSize,
+    } 
     return {
-        TextBlock с применением выбранного шрифта
+        ...presentation,
+        ...blocks,   //остальные блоки 
+        newTextBlock
     }
 }
 
 
-function ChangeFontColor(blockId: string, fontColor: string): Presentation {
+
+function ChangeFontFamily(presentation: Presentation, blockId:string, fontFamily: string): Presentation {
+   // прокинуть привязку к выпадающему списку с тремя видами font-family
+   let chosenfontFamily = document.getElementById("chosenfontFamily");
+   let value=chosenfontFamily.value; 
+   let newFontFamily;
+    if(value==1){
+        newFontFamily = "Times New Roman";
+    }
+    if(value==2){
+        newFontFamily = "Arial";
+    }
+    if(value==3){
+        newFontFamily = "Verdana, Geneva, sans-serif";
+    }
+
+    const newTextBlock = {
+        fontFamily: newFontFamily,
+    } 
     return {
-        TextBlock с применением выбранного цвета к шрифту
+        ...presentation,
+        ...blocks,   //остальные блоки 
+        newTextBlock
+    }
+}
+
+
+function ChangeFontColor(presentation: Presentation, blockId:string, fontColor: string): Presentation {
+   // прокинуть привязку к выпадающему списку с цветами
+   let chosenfontColor = document.getElementById("chosenfontColor");
+   let value=chosenfontColor.value; 
+   let newFontColor;
+    if(value==1){
+        newFontColor = "red";
+    }
+    if(value==2){
+        newFontColor = "blue";
+    }
+    if(value==3){
+        newFontColor = "green";
+    }
+    if(value==4){
+        newFontColor = "black";
+    }
+    if(value==5){
+        newFontColor = "yellow";
+    }
+    if(value==6){
+        newFontColor = "white";
+    }
+
+    const newTextBlock = {
+        fontColor: newFontColor,
+    } 
+    return {
+        ...presentation,
+        ...blocks,   //остальные блоки 
+        newTextBlock
     }
 }
 
