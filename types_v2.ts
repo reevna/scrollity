@@ -5,6 +5,7 @@ type TextBlock = {
     type: 'text',
     chars: string,
     fontSize: number,
+    fontStyle: string,
     fontFamily: string,
     color: string
 }
